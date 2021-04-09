@@ -1,0 +1,9 @@
+{
+    "manifest_version": 2,
+    "name": "Clean New Tab",
+    "description": "Chromium New Tab design by Rejwan Islam Rizvy (RIR)",
+    "version": "0.0.1",
+    "chrome_url_overrides":{
+        "newtab": "index.html"
+    }
+}

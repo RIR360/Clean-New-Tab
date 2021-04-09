@@ -1,0 +1,135 @@
+/* css variabls are not in use */
+:root {
+	--primary-light: rgb(255, 255, 255);
+	--secondary-light: rgba(255, 255, 255, 0.7);
+	--primary-dark: rgb(30, 30, 30);
+}
+
+body {
+	color: rgb(30, 30, 30);
+	margin: 0; 
+	transition: background ease 0.5s;
+}
+
+
+/*Font sizes*/
+
+.xxxl-t {
+    font-size: xx-large;
+	font-size: 40px;
+}
+
+.xxl-t {
+	font-size: 32px;
+	font-size: xx-large;
+}
+
+.l-t {
+	font-size: 18px;
+	font-size: large;
+}
+
+
+/*Page elements*/
+
+.side
+{
+	position: absolute;
+	box-sizing: border-box;
+	padding: 10px;
+	width: 350px;
+	height: 100%;
+	overflow: hidden;
+	animation: side_appear ease 1s;
+}
+
+@keyframes side_appear {
+	0% {
+		left: -30%;
+	}
+	100% {
+		left: 0%;
+	}
+}
+
+#time-box {
+	padding: 5px 10px 15px 10px;
+	background: rgba(255, 255, 255, 0.7);
+	color: black;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#time {
+	letter-spacing: 5px;
+}
+
+#date {
+	letter-spacing: 4px;
+}
+#daily_links {
+	position: relative;
+	background: rgba(255, 255, 255, 0.7);
+	width: 50px;
+	height: 50px;
+	margin: 10px 0;
+	border-radius: 5px;
+	transition: all ease 0.5s;
+}
+#dl-toggle {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	border-radius: 5px;
+	background: url('assets/links.png') center no-repeat;
+	background-size: 70%;
+	cursor: pointer;
+	width: 50px;
+	height: 50px;
+	transition: all ease 0.5s;
+}
+#daily_links .links-div {
+	display: none;
+	overflow: auto;
+	padding: 5px;
+	margin-right: -30px;
+	height: 230px;
+	transition: all ease 0.5s;
+}
+#notify {
+	position: absolute;
+	display: block;
+	background: rgb(255, 51, 0);
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	right: -5px;
+	top: -5px;
+}
+.d-link {
+	display: block;
+	text-decoration: none;
+	font-size: large;
+	border-radius: 5px;
+	padding: 10px 5px;
+	margin-bottom: 10px;
+	transition: all ease 0.2s;
+	color: inherit;
+}
+.d-link::before {
+	content: ' ';
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	margin-right: 5px;
+	top: 10px;
+	left: 50px;
+	background: rgb(255, 51, 0);
+}
+.d-link:hover {
+	background: rgba(255, 255, 255, 0.7);
+}
+.d-link.visited::before {
+	display: none;
+}

@@ -1,9 +1,10 @@
 # Clean-New-Tab
-Custom "New Tab" extension designed for Chromium browser (Google Chrome). It was designed from scratch by [Rejwan Islam Rizvy](https://www.facebook.com/RIR360)
+Custom "New Tab" extension designed for Chromium browser (Google Chrome). Designed by [Rejwan Islam Rizvy](https://www.facebook.com/RIR360)
 ## Features
 * Time and Date 
 * Changes background on each refresh
 * Common links section
+* CSS and JavaScript animation
 * Visited indicator system for links
 * Can remember visited status with localstorage
 ## Preview

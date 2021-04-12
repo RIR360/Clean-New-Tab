@@ -1,5 +1,5 @@
 # Clean-New-Tab
-Custom "New Tab" extension designed for Chromium browser (Google Chrome). It can replace the new tab of the chrome browser. Designed by [Rejwan Islam Rizvy](https://www.facebook.com/RIR360)
+Custom "New Tab" extension designed for Chromium browser (Google Chrome). It can replace the new tab of the chrome browser. Designed by [Rejwan Islam Rizvy](https://www.linkedin.com/in/linked-rir360)
 ## Features
 * Clean Interface
 * Time and Date 

@@ -1,37 +1,20 @@
-## Welcome to GitHub Pages
+## Features
+* Clean Interface
+* Time and Date 
+* Changes background on each refresh
+* Common links section
+* CSS and JavaScript animation
+* Visited indicator system for links that tells whether the link is visited today or not
+* Can remember visited status with localstorage
+## About
+This extension project shows you the use of JavaScript local storage. Using that I taught JavaScript to run a function only once a day. That way the extension will know which link you've visited on a particular day.
 
-You can use the [editor on GitHub](https://github.com/RIR360/Clean-New-Tab/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+In order to try this extension, you don't have to install it on your browser. You can find the source code in the GitHub repository below. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+It's not packed for real chrome extension because the normal users can't add any link or any image to the page. That's obviously a feature I want to implement in the future.
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/RIR360/Clean-New-Tab/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Preview
+[Watch Youtube Video](https://youtu.be/BVyTt3QJfIA)
+## Screenshots
+![normal](https://user-images.githubusercontent.com/50569315/114199091-cfb68200-9975-11eb-88e3-6d585ef5ca7c.png)
+![links open](https://user-images.githubusercontent.com/50569315/114199080-cd542800-9975-11eb-8318-fbb06d754f3d.png)

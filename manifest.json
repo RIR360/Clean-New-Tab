@@ -1,9 +1,19 @@
 {
-    "manifest_version": 2,
     "name": "Clean New Tab",
-    "description": "Chromium New Tab design by Rejwan Islam Rizvy (RIR)",
-    "version": "0.0.1",
+    "description": "Custom 'New Tab' extension designed for Chromium browser. Designed by RIR360",
+    "version": "1.0",
+    "manifest_version": 3,
     "chrome_url_overrides":{
         "newtab": "index.html"
+    },
+    "permissions": [
+        "storage"
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "16": "favicon-16.png",
+        "128": "favicon-128.png"
     }
 }

@@ -1,5 +1,73 @@
+
 body {
-	background: url("../backgrounds/alonso-reyes-544DkFtompA-unsplash.jpg");
-	background-size: cover;
+	background: black;
 	transform: all ease 0.5s;
+}
+/* Bootstrap overwrites */
+.accordion-body {
+	padding: 0rem 1.5rem;
+}
+/* Custom rules */
+.smooth {
+	transition: 0.2s ease-out;
+}
+.button {
+	cursor: pointer;
+	display: inline-block;
+	border: 2px solid var(--bs-light);
+	border-radius: 10px;
+	margin: 0 0.2rem;
+}
+.button:hover {
+	background: var(--bs-primary);
+	border: 2px solid var(--bs-light);
+}
+.button:active {
+	opacity: 0.8;
+}
+#bookmark-s-toggle {
+	top: 0;
+	height: 50%;
+	width: 0.5rem;
+	position: fixed;
+}
+#bookmark-s-toggle:hover {
+	background: linear-gradient(to right, var(--bs-primary), rgba(0, 0, 0, 0.0));
+}
+#bookmark-list {
+	top: -100%;
+	left: 50%;
+	width: 30%;
+	height: 100%;
+	position: fixed;
+	padding: 5rem 1rem;
+	opacity: 0.8;
+	overflow: auto;
+}
+.list-appear {
+	top: 0 !important;
+}
+#bookmark-list::-webkit-scrollbar {
+	display: none;
+  }
+.bookmark-folder {
+	color: var(--bs-light);
+}
+.bookmark-folder .bookmark-title {
+	padding: 10px;
+	cursor: pointer;
+	border-bottom: 2px solid var(--bs-light);
+}
+.bookmark-folder .bookmark-title:hover {
+	background:  rgb(0, 0, 0, 0.3);
+}
+.bookmark-folder .bookmark {
+	color: var(--bs-light);
+	font-weight: bold;
+}
+.bookmark-folder .bookmark div {
+	padding: 0.2rem;
+}
+.bookmark-folder .bookmark div:hover {
+	background:  rgb(0, 0, 0, 0.3);
 }

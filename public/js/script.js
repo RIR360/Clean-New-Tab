@@ -1,10 +1,19 @@
 // elements
+// customize these buttons
 const 
 day_container = document.getElementById("day"),
 date_container = document.getElementById("date"),
 bookmark_secrectButton = document.getElementById("bookmark-s-toggle"),
 bookmark_button = document.getElementById("bookmark-toggle"),
-bookmark_List = document.getElementById("bookmark-list");
+links_secrectButton = document.getElementById("links-s-toggle"),
+links_button = document.getElementById("links-toggle"),
+bookmark_List = document.getElementById("bookmark-list"),
+daily_list = document.getElementById("daily-list"),
+newLink_btn = document.getElementById("new-link"),
+cancelNewLink_btn = document.getElementById("cancel-new-link"),
+newLink_form = document.getElementById("new-link-form"),
+addNewLink_btn = document.getElementById("add-new-link"),
+links_container = document.getElementById("links");
 
 // globals
 const 
@@ -12,11 +21,13 @@ days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satur
 date = new Date(),
 index = date.getDay(),
 bg_images = [
-    "public/backgrounds/alonso-reyes-544DkFtompA-unsplash.jpg",
     "public/backgrounds/andre-benz-e4xOmzd8vzg-unsplash.jpg",
-    "public/backgrounds/ebba-thoresson-O9vsfZq8UWw-unsplash.jpg",
-    "public/backgrounds/karsten-wurth-7BjhtdogU3A-unsplash.jpg",
-    "public/backgrounds/rosie-sun-1L71sPT5XKc-unsplash.jpg"
+    "public/backgrounds/rosie-sun-1L71sPT5XKc-unsplash.jpg",
+    "public/backgrounds/ben-den-engelsen-UFwW97AP0LI-unsplash.jpg",
+    "public/backgrounds/jeremy-bishop-uAfZBP-GtiA-unsplash.jpg",
+    "public/backgrounds/john-towner-JgOeRuGD_Y4-unsplash.jpg",
+    "public/backgrounds/nandhu-kumar-t9UpW8MUmtw-unsplash.jpg",
+    "public/backgrounds/martin-adams-y1M0dZ-1Psc-unsplash.jpg"
 ];
 
 
@@ -53,9 +64,9 @@ function render_folder(folder) {
     // return whole folder html
     return `
     <div class="bookmark-folder container">
-        <h4 class="bookmark-title smooth" data-bs-toggle="collapse" data-bs-target="#folder${id}" aria-expanded="false" aria-controls="folder${id}">
+        <h5 class="bookmark-title smooth px-0 py-2" data-bs-toggle="collapse" data-bs-target="#folder${id}" aria-expanded="false" aria-controls="folder${id}">
             ${title}
-        </h4>
+        </h5>
         <div id="folder${id}" class="accordion-collapse collapse smooth">
             <div class="accordion-body">
                 ${rendered.join('')}
@@ -64,9 +75,9 @@ function render_folder(folder) {
     </div>
     `;
 }
-// toggles the bookmark list appearance
-function toggle_bookmarks() {
-    bookmark_List.classList.toggle("list-appear");
+// toggles a class
+function toggle(elem, cls) {
+    return elem.classList.toggle(cls);
 }
 // sets a randome background image
 function random_background() {
@@ -74,6 +85,113 @@ function random_background() {
     document.body.style.background = `url("${bg_images[randIndex]}")`;
     document.body.style.backgroundSize = "cover";
 }
+// renders a single daily link
+function render_link(linkObj) {
+    return `
+        <div class="d-link smooth ${linkObj.visited ? "visited" : ""}">
+            <a target="_blank" href="${linkObj.url}">${linkObj.name}</a>
+            <span id="${linkObj.name}">X</span>
+        </div>
+    `;
+}
+// renders daily links
+function render_links(links) {
+    // empty array for rendered html
+    const rendered = [];
+    // render link html for all of the links
+    for (let linkObj of links)
+        rendered.push(render_link(linkObj));
+    return rendered.join('');
+}
+function load_daily_links() {
+    // push sample url if localstorage is empty
+    if (!localStorage.links)
+    {
+        const sample = [{
+            name: "New tab",
+            url: "#",
+            visited: true
+        }];
+        localStorage.setItem("links", JSON.stringify(sample));
+    }
+    // geting links from the localstorage
+    const daily_links = JSON.parse(localStorage.links);
+    // writing html to the container
+    links_container.innerHTML = render_links(daily_links);
+    // handle remove button event here
+    var remove_btns = document.querySelectorAll(".d-link span");
+    remove_btns.forEach(btn => {
+        btn.addEventListener("click", e => {
+            console.log(btn, btn.id);
+            remove_link(btn.id);
+        });
+    });
+}
+// insert a link to localstorage
+function insert_link(name, url) {
+    // get localstorage
+    const links = JSON.parse(localStorage.links);
+    // generate new link
+    const new_link = {
+        name: name,
+        url: url,
+        visited: false
+    };
+    // push the link
+    links.push(new_link);
+    // write to the localStorage
+    localStorage.setItem("links", JSON.stringify(links));
+    // reload the links
+    load_daily_links();
+}
+// remove a link from localstorage
+function remove_link(name) {
+    const links = JSON.parse(localStorage.links);
+    let found = false;
+    let index;
+    // checking for the url in localstorage
+    for (index in links)
+        if (links[index].name == name)
+        {
+            found = true;
+            break;
+        }
+    if (found)
+    {
+        // remove the item 
+        links.splice(index, 1);
+        // write the new links again
+        localStorage.setItem("links", JSON.stringify(links));
+        load_daily_links();
+    } else {
+        console.error("That item is not in the localstorage.");
+    }
+}
+// handle creating new links event
+function handle_new_link() {
+    newLink_btn.addEventListener("click", e => {
+        toggle(newLink_form, "collapse");
+    });
+    cancelNewLink_btn.addEventListener("click", e => {
+        e.stopPropagation();
+        newLink_form["name"].value = "";
+        newLink_form["url"].value = "";
+        toggle(newLink_form, "collapse");
+    });
+    addNewLink_btn.addEventListener("click", e => {
+        e.stopPropagation();
+        const name = newLink_form["name"].value;
+        const url = newLink_form["url"].value;
+        // check if inputs are ok
+        if (!name || !url)
+            alert("Please fill out the form first");
+        else if (name.length > 20)
+            alert("Name exceeds the limit");
+        else insert_link(name, url);
+    });
+}
+
+
 
 // main function
 window.onload = async (e) => {
@@ -96,15 +214,28 @@ window.onload = async (e) => {
         for (let folder of folders)
         bookmark_List.innerHTML += (render_folder(folder));
     });
-
-    // bookmark toggle
+    
+    // bookmarks toggle
     bookmark_button.addEventListener("click", e => {
-        toggle_bookmarks();
-    })
+        toggle(bookmark_List, "list-appear");
+    });
     bookmark_secrectButton.addEventListener("mouseover", e => {
-        toggle_bookmarks();
-    })
-
+        toggle(bookmark_List, "list-appear");
+    });
+    
+    // daily links toggle
+    links_button.addEventListener("click", e => {
+        toggle(daily_list, "d-list-appear");
+    });
+    links_secrectButton.addEventListener("mouseover", e => {
+        toggle(daily_list, "d-list-appear");
+    });
+    
+    // load daily links
+    load_daily_links();
+    // handle daily link
+    handle_new_link();
+    
     // display the page
     document.body.style.opacity = 0;
     document.body.style.opacity = 1;

@@ -2,6 +2,7 @@
 body {
 	background: black;
 	transform: all ease 0.5s;
+	color: var(--bs-light);
 }
 /* Bootstrap overwrites */
 .accordion-body {
@@ -14,16 +15,15 @@ body {
 .button {
 	cursor: pointer;
 	display: inline-block;
-	border: 2px solid var(--bs-light);
+	border: 2px solid transparent;
 	border-radius: 10px;
 	margin: 0 0.2rem;
 }
 .button:hover {
-	background: var(--bs-primary);
 	border: 2px solid var(--bs-light);
 }
 .button:active {
-	opacity: 0.8;
+	background: var(--bs-light);
 }
 #bookmark-s-toggle {
 	top: 0;
@@ -32,8 +32,9 @@ body {
 	position: fixed;
 }
 #bookmark-s-toggle:hover {
-	background: linear-gradient(to right, var(--bs-primary), rgba(0, 0, 0, 0.0));
+	background: linear-gradient(to right, var(--bs-light), rgba(0, 0, 0, 0.0));
 }
+
 #bookmark-list {
 	top: -100%;
 	left: 50%;
@@ -49,7 +50,7 @@ body {
 }
 #bookmark-list::-webkit-scrollbar {
 	display: none;
-  }
+}
 .bookmark-folder {
 	color: var(--bs-light);
 }
@@ -69,5 +70,64 @@ body {
 	padding: 0.2rem;
 }
 .bookmark-folder .bookmark div:hover {
-	background:  rgb(0, 0, 0, 0.3);
+	background:  rgb(0, 0, 0, 0.7);
+}
+.d-list-appear {
+	right: 0 !important;
+}
+#links-s-toggle {
+	top: 50%;
+	right: 0;
+	height: 50%;
+	width: 0.5rem;
+	position: fixed;
+}
+#links-s-toggle:hover {
+	background: linear-gradient(to left, var(--bs-light), rgba(0, 0, 0, 0.0));
+}
+#daily-list {
+	top: 0;
+	right: -30%;
+	width: 21%;
+	height: 100%;
+	opacity: 0.8;
+	overflow: auto;
+	position: fixed;
+	padding: 5rem 1rem;
+	border-left: 2px solid var(--bs-light);
+}
+#daily-list::-webkit-scrollbar {
+	display: none;
+}
+#daily-list .d-link {
+	position: relative;
+	padding: 0.5rem 0.2rem;
+	border-bottom: 2px solid transparent;
+}
+#daily-list .d-link:hover {
+	border-bottom: 2px solid var(--bs-light);
+}
+#daily-list .d-link:hover span {
+	display: inline-block;
+}
+#daily-list a {
+	color: var(--bs-light);
+	font-weight: bold;
+}
+#daily-list .d-link span {
+	position: absolute;
+	right: 0;
+	padding: 0 0.5rem;
+	display: none;
+	cursor: pointer;
+	color: var(--bs-dark);
+	background: var(--bs-light);
+	border-radius: 5px;
+}
+#daily-list .d-link span:hover {
+	color: var(--bs-light);
+	background: var(--bs-secondary);
+}
+#daily-list .visited {
+	opacity: 0.7;
 }

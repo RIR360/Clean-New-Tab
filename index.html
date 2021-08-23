@@ -18,13 +18,39 @@
             <img id="bookmark-toggle" src="public/images/bookmark-icon.png" alt="bookmark list toggle button" width="32" title="Toggle Bookmarks">
         </div>
         <div class="button smooth">
-            <img id="daily-toggle" src="public/images/daily-icon.png" alt="bookmark list toggle button" width="32" title="Toggle Bookmarks">
+            <img id="links-toggle" src="public/images/daily-icon.png" alt="bookmark list toggle button" width="32" title="Toggle Daily links">
         </div>
     </div>
     <div id="bookmark-list" class="smooth">
         <!-- Bookmark folders will be rendered here -->
     </div>
+    <div id="daily-list" class="smooth">
+        <div>
+            <button id="new-link" class="btn btn-light my-2">Add New Link</button>
+        </div>
+        <form class="container py-3 bg-light text-dark collapse rounded" id="new-link-form">
+            <div class="form-group">
+                <label for="">Site Name</label>
+                <input name="name" class="form-control" type="text" placeholder="Site Name" maxlength="20">
+            </div>
+            <div class="form-group">
+                <label for="">URL</label>
+                <input name="url" class="form-control" type="text" placeholder="https://url.com">
+            </div>
+            <div class="text-end py-2">
+                <input class="btn btn-secondary" type="button" id="cancel-new-link" value="Cancel">
+                <input class="btn btn-dark" type="button" value="Add" id="add-new-link">
+            </div>
+        </form>
+        <div id="links" class="py-3">
+            <div class="d-link smooth">
+                <a href="#">Daily link 01</a>
+                <span>X</span>
+            </div>
+        </div>
+    </div>
     <div id="bookmark-s-toggle"></div>
+    <div id="links-s-toggle"></div>
     <script src="public/js/bootstrap.min.js"></script>
     <script src="public/js/jquery.min.js"></script>
     <script src="public/js/script.js"></script>

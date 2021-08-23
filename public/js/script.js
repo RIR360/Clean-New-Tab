@@ -1,5 +1,4 @@
 // elements
-// customize these buttons
 const 
 day_container = document.getElementById("day"),
 date_container = document.getElementById("date"),
@@ -89,7 +88,7 @@ function random_background() {
 function render_link(linkObj) {
     return `
         <div class="d-link smooth ${linkObj.visited ? "visited" : ""}">
-            <a target="_blank" href="${linkObj.url}">${linkObj.name}</a>
+            <a target="_blank" for="${linkObj.name}" href="${linkObj.url}">${linkObj.name}</a>
             <span id="${linkObj.name}">X</span>
         </div>
     `;
@@ -115,14 +114,34 @@ function load_daily_links() {
         localStorage.setItem("links", JSON.stringify(sample));
     }
     // geting links from the localstorage
-    const daily_links = JSON.parse(localStorage.links);
+    const local_links = JSON.parse(localStorage.links);
     // writing html to the container
-    links_container.innerHTML = render_links(daily_links);
+    links_container.innerHTML = render_links(local_links);
     // handle remove button event here
-    var remove_btns = document.querySelectorAll(".d-link span");
+    const daily_links = document.querySelectorAll(".d-link a");
+    daily_links.forEach(link => {
+        link.addEventListener("click", e => {
+            // get localstorage
+            const name = link.getAttribute("for");
+            const links = JSON.parse(localStorage.links);
+            let found = false;
+            let index;
+            // checking for the url in localstorage
+            for (index in links)
+                if (links[index].name == name)
+                {
+                    found = true;
+                    links[index].visited = true;
+                    break;
+                }
+            localStorage.setItem("links", JSON.stringify(links));
+            load_daily_links();
+        });
+    });
+    // handle daily link button event here
+    const remove_btns = document.querySelectorAll(".d-link span");
     remove_btns.forEach(btn => {
         btn.addEventListener("click", e => {
-            console.log(btn, btn.id);
             remove_link(btn.id);
         });
     });
@@ -190,6 +209,22 @@ function handle_new_link() {
         else insert_link(name, url);
     });
 }
+function init_local_storage() {
+    const curr_day = date.getDay();
+    const local_day = localStorage.today;
+    // reset daily link state
+    if (!local_day || local_day != curr_day)
+    {
+        localStorage.setItem("today", curr_day);
+        // reset daily link visited status
+        const links = JSON.parse(localStorage.links);
+        for (let link of links) {
+            link.visited = false;
+        }
+        localStorage.setItem("links", JSON.stringify(links));
+    }
+}
+
 
 
 
@@ -230,7 +265,9 @@ window.onload = async (e) => {
     links_secrectButton.addEventListener("mouseover", e => {
         toggle(daily_list, "d-list-appear");
     });
-    
+
+    // reset localstorage day
+    init_local_storage();
     // load daily links
     load_daily_links();
     // handle daily link

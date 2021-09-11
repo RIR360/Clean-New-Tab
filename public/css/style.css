@@ -27,6 +27,7 @@ body {
 }
 #bookmark-s-toggle {
 	top: 0;
+	right: 0;
 	height: 50%;
 	width: 0.5rem;
 	position: fixed;

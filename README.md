@@ -11,17 +11,17 @@ This is custom "New Tab" extension designed for Chromium browser (Google Chrome)
 * Temporary common links section
 * Bookmark accordion list
 
-# Temporary Common Links - Features
+## Temporary Common Links - Features
 * This section toggles upon you click the "Daily links" button.
-* You can add a link or remove.
+* You can add a link or remove it.
 * Links will be stored in the localstorage.
 * There'll a status that will indicate if the link is visited or not.
 
-# Bookmark Accordion List - Features
-* This section toggles upon you click the "Bookamrks" button
+## Bookmark Accordion List - Features
+* This section toggles upon you click the "Bookmarks" button
 * Here you will find the list of all the bookmark folders.
 * Only those bookmarks will show up that are inside a folder.
-* It uses "Chrome API" to fetch the bookmakrs collections.
+* It uses "Chrome API" to fetch the bookmarks collections.
 
 ## About
 This is a remake of the previous version "Clean New Tab V1.0". This version is more professional and clean. And additionally bookmarks folder list and creating/removing temporary links ability is included.<br/>

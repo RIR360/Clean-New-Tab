@@ -4,8 +4,6 @@ day_container = document.getElementById("day"),
 date_container = document.getElementById("date"),
 bookmark_secrectButton = document.getElementById("bookmark-s-toggle"),
 bookmark_button = document.getElementById("bookmark-toggle"),
-links_secrectButton = document.getElementById("links-s-toggle"),
-links_button = document.getElementById("links-toggle"),
 bookmark_List = document.getElementById("bookmark-list"),
 daily_list = document.getElementById("daily-list"),
 newLink_btn = document.getElementById("new-link"),
@@ -31,9 +29,6 @@ bg_images = [
 
 
 // Bookmark class for the dom
-/* class Bookmark {
-    constructor()
-} */
 // renders html for a single bookmark
 function render_bookmark(bookmark) {
     // folder values
@@ -253,16 +248,10 @@ window.onload = async (e) => {
     // bookmarks toggle
     bookmark_button.addEventListener("click", e => {
         toggle(bookmark_List, "list-appear");
+        toggle(daily_list, "d-list-appear");
     });
     bookmark_secrectButton.addEventListener("mouseover", e => {
         toggle(bookmark_List, "list-appear");
-    });
-    
-    // daily links toggle
-    links_button.addEventListener("click", e => {
-        toggle(daily_list, "d-list-appear");
-    });
-    links_secrectButton.addEventListener("mouseover", e => {
         toggle(daily_list, "d-list-appear");
     });
 

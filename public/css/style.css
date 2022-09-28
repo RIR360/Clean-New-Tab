@@ -65,7 +65,7 @@ body {
 }
 .bookmark-folder .bookmark {
 	color: var(--bs-light);
-	font-weight: bold;
+	text-decoration: none;
 }
 .bookmark-folder .bookmark div {
 	padding: 0.2rem;
@@ -113,7 +113,7 @@ body {
 }
 #daily-list a {
 	color: var(--bs-light);
-	font-weight: bold;
+	text-decoration: none;
 }
 #daily-list .d-link span {
 	position: absolute;

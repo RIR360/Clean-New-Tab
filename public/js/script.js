@@ -243,10 +243,7 @@ window.onload = async (e) => {
 
     // set day and date
     day_container.innerHTML = days[index];
-    date_container.innerHTML = 
-    date.getMonth() + 1 + "/" +
-    date.getDate() + "/" + 
-    date.getFullYear();
+    date_container.innerHTML = date.toDateString().slice(4);
     
     // load bookmarks
     await chrome.bookmarks.getTree(res => {

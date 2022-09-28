@@ -132,6 +132,9 @@ body {
 #daily-list .visited {
 	opacity: 0.7;
 }
+#daily-list .visited::after {
+	content: "- Visited";
+}
 
 #daily-routine {
 	top: 40%;

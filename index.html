@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Tab</title>
+    <title>My Clean Tab</title>
     <link rel="stylesheet" href="public/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="shortcut icon" href="favicon-16.png" type="image/x-icon">
 </head>
 <body style="opacity: 0;">
-    <div class="container text-white py-3">
+    <div class="container-fluid text-white py-3 px-5">
         <h1 class="display-3 pb-3">
             <span class="fw-bold" id="day">Day Name</span>
             <span class="display-6 text-light" id="date">0/00/0000</span>
@@ -19,11 +19,12 @@
         </div>
     </div>
     <div id="bookmark-list" class="smooth">
+        <div class="h4 p-2 rounded">My Bookmark Folders</div>
         <!-- Bookmark folders will be rendered here -->
     </div>
     <div id="daily-list" class="smooth">
         <div>
-            <button id="new-link" class="btn btn-light my-2">Add New Link</button>
+            <div class="h4 rounded py-2">My Regular Visits</div>
         </div>
         <form class="container py-3 bg-light text-dark collapse rounded" id="new-link-form">
             <div class="form-group">
@@ -46,6 +47,7 @@
             </div>
         </div>
         <!-- All links will be rendered here -->
+        <button id="new-link" class="btn btn-light my-2">Add New Visit</button>
     </div>
     <div id="bookmark-s-toggle"></div>
     <div id="links-s-toggle"></div>

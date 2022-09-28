@@ -48,13 +48,19 @@ function render_folder(folder) {
     // folder values
     const
     id = folder.id,
-    title = folder.title,
-    // get bookmakrs
-    bookmarks = folder.children,
-    rendered = [];
-    // rendering bookmarks
-    for (let bookmark of bookmarks)
-        rendered.push(render_bookmark(bookmark));
+    title = folder.title;
+    
+    // render bookmarks code
+    var rendered = [];
+    var open = [];
+    if (folder.children) {
+        var bookmarks = folder.children;
+        for (let bookmark of bookmarks)
+            rendered.push(render_bookmark(bookmark));
+    } else {
+        rendered.push(render_bookmark(folder));
+    }
+
     // return whole folder html
     return `
     <div class="bookmark-folder container">
@@ -78,6 +84,7 @@ function random_background() {
     let randIndex = Math.floor(Math.random() * bg_images.length);
     document.body.style.background = `url("${bg_images[randIndex]}")`;
     document.body.style.backgroundSize = "cover";
+    document.body.style.resize = "both";
 }
 // renders a single daily link
 function render_link(linkObj) {
@@ -201,7 +208,12 @@ function handle_new_link() {
             alert("Please fill out the form first");
         else if (name.length > 20)
             alert("Name exceeds the limit");
-        else insert_link(name, url);
+        else {
+            insert_link(name, url);
+            newLink_form["name"].value = "";
+            newLink_form["url"].value = "";
+            toggle(newLink_form, "collapse");
+        } 
     });
 }
 function init_local_storage() {
@@ -242,7 +254,7 @@ window.onload = async (e) => {
         const folders = res[0].children[0].children;
         // print
         for (let folder of folders)
-        bookmark_List.innerHTML += (render_folder(folder));
+            bookmark_List.innerHTML += (render_folder(folder));
     });
     
     // bookmarks toggle

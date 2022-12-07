@@ -3,9 +3,11 @@ const
 day_container = document.getElementById("day"),
 date_container = document.getElementById("date"),
 bookmark_secrectButton = document.getElementById("bookmark-s-toggle"),
+frame_secrectButton = document.getElementById("frame-s-toggle"),
 bookmark_button = document.getElementById("bookmark-toggle"),
 bookmark_List = document.getElementById("bookmark-list"),
 daily_list = document.getElementById("daily-list"),
+site_frame = document.getElementById("site-frame"),
 newLink_btn = document.getElementById("new-link"),
 cancelNewLink_btn = document.getElementById("cancel-new-link"),
 newLink_form = document.getElementById("new-link-form"),
@@ -262,6 +264,14 @@ window.onload = async (e) => {
     bookmark_secrectButton.addEventListener("mouseover", e => {
         toggle(bookmark_List, "list-appear");
         toggle(daily_list, "d-list-appear");
+    });
+
+    frame_secrectButton.addEventListener("mouseover", e => {
+        let iframe = site_frame.querySelector("iframe");
+        if (iframe.getAttribute("src") == "") {
+            iframe.setAttribute("src", "https://app.daily.dev/popular")
+        }
+        toggle(site_frame, "appear");
     });
 
     // reset localstorage day

@@ -76,14 +76,14 @@ body {
 .d-list-appear {
 	right: 0 !important;
 }
-#links-s-toggle {
+#frame-s-toggle {
 	top: 0;
 	left: 0;
 	height: 100%;
 	width: 0.5rem;
 	position: fixed;
 }
-#links-s-toggle:hover {
+#frame-s-toggle:hover {
 	background: linear-gradient(to left, var(--bs-light), rgba(0, 0, 0, 0.0));
 }
 #daily-list {
@@ -146,4 +146,21 @@ body {
 	position: fixed;
 	padding: 5rem 1rem;
 	border: 2px solid var(--bs-light);
+}
+
+#site-frame {
+	width: 100%;
+	position: fixed;
+	left: -100%;
+	transition: left 0.5s;
+}
+
+#site-frame.appear {
+	left: 0;
+}
+
+#site-frame iframe {
+	width: 100%;
+	height: 65vh;
+	opacity: 0.8;
 }

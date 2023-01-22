@@ -3,6 +3,7 @@ body {
 	background: black;
 	transform: all ease 0.5s;
 	color: var(--bs-light);
+	opacity: 0;
 }
 /* Bootstrap overwrites */
 .accordion-body {
@@ -33,7 +34,7 @@ body {
 	position: fixed;
 }
 #bookmark-s-toggle:hover {
-	background: linear-gradient(to right, var(--bs-light), rgba(0, 0, 0, 0.0));
+	background: linear-gradient(to left, var(--bs-light), rgba(0, 0, 0, 0.0));
 }
 
 #bookmark-list {
@@ -61,7 +62,8 @@ body {
 	border-bottom: 2px solid var(--bs-light);
 }
 .bookmark-folder .bookmark-title:hover {
-	background:  rgb(0, 0, 0, 0.3);
+	background: rgb(30, 30, 30);
+	background: linear-gradient(rgba(30, 30, 30, 0), rgb(30, 30, 30));
 }
 .bookmark-folder .bookmark {
 	color: var(--bs-light);
@@ -69,9 +71,12 @@ body {
 }
 .bookmark-folder .bookmark div {
 	padding: 0.2rem;
+	border-bottom: 2px solid transparent;
 }
 .bookmark-folder .bookmark div:hover {
-	background:  rgb(0, 0, 0, 0.7);
+	background: rgb(30, 30, 30);
+	background: linear-gradient(rgba(30, 30, 30, 0), rgb(30, 30, 30));
+	border-bottom: 2px solid var(--bs-light);
 }
 .d-list-appear {
 	right: 0 !important;
@@ -84,7 +89,7 @@ body {
 	position: fixed;
 }
 #frame-s-toggle:hover {
-	background: linear-gradient(to left, var(--bs-light), rgba(0, 0, 0, 0.0));
+	background: linear-gradient(to right, var(--bs-light), rgba(0, 0, 0, 0.0));
 }
 #daily-list {
 	top: 0;
@@ -106,6 +111,8 @@ body {
 	border-bottom: 2px solid transparent;
 }
 #daily-list .d-link:hover {
+	background: rgb(30, 30, 30);
+	background: linear-gradient(rgba(30, 30, 30, 0), rgb(30, 30, 30));
 	border-bottom: 2px solid var(--bs-light);
 }
 #daily-list .d-link:hover span {

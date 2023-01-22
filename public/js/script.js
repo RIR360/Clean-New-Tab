@@ -20,13 +20,7 @@ days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satur
 date = new Date(),
 index = date.getDay(),
 bg_images = [
-    "public/backgrounds/andre-benz-e4xOmzd8vzg-unsplash.jpg",
-    "public/backgrounds/rosie-sun-1L71sPT5XKc-unsplash.jpg",
-    "public/backgrounds/ben-den-engelsen-UFwW97AP0LI-unsplash.jpg",
-    "public/backgrounds/jeremy-bishop-uAfZBP-GtiA-unsplash.jpg",
-    "public/backgrounds/john-towner-JgOeRuGD_Y4-unsplash.jpg",
-    "public/backgrounds/nandhu-kumar-t9UpW8MUmtw-unsplash.jpg",
-    "public/backgrounds/martin-adams-y1M0dZ-1Psc-unsplash.jpg"
+    "public/backgrounds/abstract-layers.jpg"
 ];
 
 
@@ -240,7 +234,7 @@ function init_local_storage() {
 // main function
 window.onload = async (e) => {
     
-    // load a randome background
+    // load a random background
     random_background();
 
     // set day and date
@@ -256,21 +250,12 @@ window.onload = async (e) => {
             bookmark_List.innerHTML += (render_folder(folder));
     });
     
-    // bookmarks toggle
-    bookmark_button.addEventListener("click", e => {
-        toggle(bookmark_List, "list-appear");
-        toggle(daily_list, "d-list-appear");
-    });
     bookmark_secrectButton.addEventListener("mouseover", e => {
         toggle(bookmark_List, "list-appear");
         toggle(daily_list, "d-list-appear");
     });
 
     frame_secrectButton.addEventListener("mouseover", e => {
-        let iframe = site_frame.querySelector("iframe");
-        if (iframe.getAttribute("src") == "") {
-            iframe.setAttribute("src", "https://app.daily.dev/popular")
-        }
         toggle(site_frame, "appear");
     });
 
@@ -282,6 +267,5 @@ window.onload = async (e) => {
     handle_new_link();
     
     // display the page
-    document.body.style.opacity = 0;
     document.body.style.opacity = 1;
 };

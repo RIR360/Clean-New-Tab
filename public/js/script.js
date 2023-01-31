@@ -59,8 +59,8 @@ function render_folder(folder) {
 
     // return whole folder html
     return `
-    <div class="bookmark-folder container">
-        <h5 class="bookmark-title smooth px-0 py-2" data-bs-toggle="collapse" data-bs-target="#folder${id}" aria-expanded="false" aria-controls="folder${id}">
+    <div class="bookmark-folder px-2">
+        <h5 class="bookmark-title smooth  py-2" data-bs-toggle="collapse" data-bs-target="#folder${id}" aria-expanded="false" aria-controls="folder${id}">
             ${title}
         </h5>
         <div id="folder${id}" class="accordion-collapse collapse smooth">
@@ -78,7 +78,7 @@ function toggle(elem, cls) {
 // sets a randome background image
 function random_background() {
     let randIndex = Math.floor(Math.random() * bg_images.length);
-    document.body.style.background = `url("${bg_images[randIndex]}")`;
+    document.body.style.backgroundImage = `url("${bg_images[randIndex]}")`;
     document.body.style.backgroundSize = "cover";
     document.body.style.resize = "both";
 }
@@ -253,6 +253,7 @@ window.onload = async (e) => {
     bookmark_secrectButton.addEventListener("mouseover", e => {
         toggle(bookmark_List, "list-appear");
         toggle(daily_list, "d-list-appear");
+        toggle(site_frame, "pause");
     });
 
     frame_secrectButton.addEventListener("mouseover", e => {

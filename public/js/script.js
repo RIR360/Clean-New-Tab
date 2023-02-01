@@ -27,20 +27,24 @@ bg_images = [
 // Bookmark class for the dom
 // renders html for a single bookmark
 function render_bookmark(bookmark) {
+
     // folder values
     const
     title = bookmark.title,
     url = bookmark.url;
+
     return `
         <a target="_blank" class="bookmark" href="${url}">
             <div class="py-1">
-                ${title}
+                ${title} <span class="small text-muted">- Just Now<span>
             </div>
         </a>
     `;
 }
+
 // renders html for bookmark folder or collection
 function render_folder(folder) {
+
     // folder values
     const
     id = folder.id,
@@ -49,19 +53,28 @@ function render_folder(folder) {
     // render bookmarks code
     var rendered = [];
     var open = [];
+
     if (folder.children) {
+
         var bookmarks = folder.children;
+
         for (let bookmark of bookmarks)
+
             rendered.push(render_bookmark(bookmark));
+
     } else {
+
+        // folder itself is a bookmark here
         rendered.push(render_bookmark(folder));
+
     }
 
     // return whole folder html
     return `
     <div class="bookmark-folder px-2">
-        <h5 class="bookmark-title smooth  py-2" data-bs-toggle="collapse" data-bs-target="#folder${id}" aria-expanded="false" aria-controls="folder${id}">
-            ${title}
+        <h5 class="bookmark-title smooth  py-2" data-bs-toggle="collapse" 
+            data-bs-target="#folder${id}" aria-expanded="false" aria-controls="folder${id}">
+            ${title} <span class="small text-muted">- Just Now<span>
         </h5>
         <div id="folder${id}" class="accordion-collapse collapse smooth">
             <div class="accordion-body">
@@ -71,10 +84,12 @@ function render_folder(folder) {
     </div>
     `;
 }
+
 // toggles a class
 function toggle(elem, cls) {
     return elem.classList.toggle(cls);
 }
+
 // sets a randome background image
 function random_background() {
     let randIndex = Math.floor(Math.random() * bg_images.length);
@@ -82,6 +97,7 @@ function random_background() {
     document.body.style.backgroundSize = "cover";
     document.body.style.resize = "both";
 }
+
 // renders a single daily link
 function render_link(linkObj) {
     return `
@@ -91,6 +107,7 @@ function render_link(linkObj) {
         </div>
     `;
 }
+
 // renders daily links
 function render_links(links) {
     // empty array for rendered html
@@ -100,30 +117,32 @@ function render_links(links) {
         rendered.push(render_link(linkObj));
     return rendered.join('');
 }
+
 function load_daily_links() {
+
     // push sample url if localstorage is empty
     if (!localStorage.links)
     {
-        const sample = [{
-            name: "New tab",
-            url: "#",
-            visited: true
-        }];
-        localStorage.setItem("links", JSON.stringify(sample));
+        localStorage.setItem("links", "");
     }
+
     // geting links from the localstorage
     const local_links = JSON.parse(localStorage.links);
     // writing html to the container
     links_container.innerHTML = render_links(local_links);
     // handle remove button event here
     const daily_links = document.querySelectorAll(".d-link a");
+
     daily_links.forEach(link => {
+
         link.addEventListener("click", e => {
+
             // get localstorage
             const name = link.getAttribute("for");
             const links = JSON.parse(localStorage.links);
             let found = false;
             let index;
+
             // checking for the url in localstorage
             for (index in links)
                 if (links[index].name == name)
@@ -132,18 +151,28 @@ function load_daily_links() {
                     links[index].visited = true;
                     break;
                 }
+
             localStorage.setItem("links", JSON.stringify(links));
             load_daily_links();
         });
+
     });
+
     // handle daily link button event here
     const remove_btns = document.querySelectorAll(".d-link span");
+
     remove_btns.forEach(btn => {
+
         btn.addEventListener("click", e => {
+
             remove_link(btn.id);
+
         });
+
     });
+
 }
+
 // insert a link to localstorage
 function insert_link(name, url) {
     // get localstorage
@@ -243,11 +272,14 @@ window.onload = async (e) => {
     
     // load bookmarks
     await chrome.bookmarks.getTree(res => {
+
         // get the bookmark object list
         const folders = res[0].children[0].children;
-        // print
+
+        // render
         for (let folder of folders)
             bookmark_List.innerHTML += (render_folder(folder));
+
     });
     
     bookmark_secrectButton.addEventListener("mouseover", e => {

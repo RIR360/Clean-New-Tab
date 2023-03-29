@@ -3,59 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Clean Tab</title>
+    <title>New Clean Tab</title>
     <link rel="stylesheet" href="public/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="shortcut icon" href="favicon-16.png" type="image/x-icon">
 </head>
-<body style="opacity: 0;">
-    <div class="container-fluid text-white pt-3 px-5">
-        <h1 class="display-3 pb-3">
-            <span class="fw-bold" id="day">Day Name</span>
-            <span class="fs-3 text-light" id="date">0/00/0000</span>
+
+<body class="invisible">
+
+    <div class="pt-3 px-5">
+        <h1 class="display-4 pb-3">
+            <strong id="day" class="fw-bold">Day Name</strong>
+            <span class="fs-3" id="date">0/00/0000</span>
         </h1>
     </div>
-    <div id="site-frame" class="px-5">
-        <iframe src="https://app.daily.dev/popular" frameborder="0"></iframe>
+
+    <div id="site-frame" class="w-100 px-5 smooth position-fixed">
+        <iframe class="w-100" src="" loading="lazy" frameborder="0"></iframe>
     </div>
-    <div id="bookmark-list" class="smooth py-5 px-4">
-        <div class="h4 px-2 rounded">
-            My Bookmark Folders
+
+    <div id="bookmark-menu" class="py-5 px-3 smooth row">
+        
+        <div id="bookmark-list" class="col-md">
+            <div class="fs-4 mb-3 fw-bold">
+                Bookmark Folders
+            </div>
+            <!-- Bookmark folders will be rendered here -->
         </div>
-        <div class="px-2 small mb-2">Manage Bookmarks from "Bookmark Manager"</div>
-        <!-- Bookmark folders will be rendered here -->
+
+        <div class="col-md">
+            <div class="fs-4 mb-3 fw-bold">
+                Daily Visits
+            </div>
+            <form class="p-3 collapse border rounded mb-3" id="new-link-form">
+                <div class="form-group">
+                    <label class="form-level my-3" for="site-name">Site Name</label>
+                    <input id="site-name" name="name" class="form-control" type="text" placeholder="Site Name" maxlength="20" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-level my-3" for="site-url">Site URL</label>
+                    <input id="site-url" name="url" class="form-control" type="text" placeholder="https://url.com" required>
+                </div>
+                <div class="text-end py-3">
+                    <input class="btn btn-outline-secondary" type="button" id="cancel-new-link" value="Cancel">
+                    <input class="btn btn-outline-light" type="button" value="Add" id="add-new-link">
+                </div>
+            </form>
+            <div id="links" class="mb-3">
+                <div class="d-link smooth">
+                    <a href="#">New tab</a>
+                    <span>X</span>
+                </div>
+            </div>
+            <!-- All links will be rendered here -->
+            <button id="new-link" class="btn btn-outline-light my-2">Add New Visit</button>
+        </div>
+        
     </div>
-    <div id="daily-list" class="smooth py-5 px-3">
-        <div>
-            <div class="h4 rounded mb-2">My Regular Visits</div>
-        </div>
-        <form class="p-2 bg-white text-dark collapse rounded" id="new-link-form">
-            <div class="form-group">
-                <label for="" class="mb-2">Site Name</label>
-                <input name="name" class="form-control" type="text" placeholder="Site Name" maxlength="20">
-            </div>
-            <div class="form-group">
-                <label for="" class="mb-2">URL</label>
-                <input name="url" class="form-control" type="text" placeholder="https://url.com">
-            </div>
-            <div class="text-end py-2">
-                <input class="btn btn-secondary" type="button" id="cancel-new-link" value="Cancel">
-                <input class="btn btn-dark" type="button" value="Add" id="add-new-link">
-            </div>
-        </form>
-        <div id="links" class="py-3">
-            <div class="d-link smooth">
-                <a href="#">New tab</a>
-                <span>X</span>
-            </div>
-        </div>
-        <!-- All links will be rendered here -->
-        <button id="new-link" class="btn btn-light my-2">Add New Visit</button>
-    </div>
+
+    <!-- secret toggle buttons -->
     <div id="bookmark-s-toggle"></div>
     <div id="frame-s-toggle"></div>
+
     <script src="public/js/bootstrap.min.js"></script>
-    <script src="public/js/jquery.min.js"></script>
     <script src="public/js/script.js"></script>
 </body>
 </html>

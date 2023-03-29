@@ -1,18 +1,30 @@
 
 body {
-	background: black;
-	transform: all ease 0.5s;
-	color: var(--bs-light);
+	background: rgb(30, 30, 30);
+	color: #fff;
+}
+
+.invisible {
 	opacity: 0;
 }
+
+.smooth {
+	transition: all ease-in-out 0.3s;
+}
+
+
 /* Bootstrap overwrites */
 .accordion-body {
 	padding: 0rem 1.5rem;
 }
-/* Custom rules */
-.smooth {
-	transition: 0.2s ease-out;
+
+.form-control, .form-control:active, .form-control:focus {
+	background: transparent;
+	color: var(--bs-light);
 }
+
+/* Custom rules */
+
 .button {
 	cursor: pointer;
 	display: inline-block;
@@ -20,12 +32,15 @@ body {
 	border-radius: 10px;
 	margin: 0 0.2rem;
 }
+
 .button:hover {
 	border: 2px solid var(--bs-light);
 }
+
 .button:active {
 	background: var(--bs-light);
 }
+
 #bookmark-s-toggle {
 	top: 0;
 	right: 0;
@@ -33,53 +48,58 @@ body {
 	width: 0.5rem;
 	position: fixed;
 }
+
 #bookmark-s-toggle:hover {
 	background: linear-gradient(to left, var(--bs-light), rgba(0, 0, 0, 0.0));
 }
 
 #bookmark-list {
-	top: -100%;
-	left: 50%;
-	width: 30%;
 	height: 100%;
-	position: fixed;
-	opacity: 0.8;
 	overflow: auto;
 }
+
 .list-appear {
 	top: 0 !important;
 }
+
 #bookmark-list::-webkit-scrollbar {
 	display: none;
 }
+
 .bookmark-folder {
 	color: var(--bs-light);
 }
+
 .bookmark-folder .bookmark-title {
-	padding: 10px;
 	cursor: pointer;
-	border-bottom: 2px solid var(--bs-light);
+	border-bottom: 1px solid transparent;
 }
+
 .bookmark-folder .bookmark-title:hover {
 	background: rgb(30, 30, 30);
 	background: linear-gradient(rgba(30, 30, 30, 0), rgb(30, 30, 30));
+	border-bottom: 1px solid var(--bs-light);
 }
+
 .bookmark-folder .bookmark {
 	color: var(--bs-light);
 	text-decoration: none;
 }
+
 .bookmark-folder .bookmark div {
-	padding: 0.2rem;
-	border-bottom: 2px solid transparent;
+	border-bottom: 1px solid transparent;
 }
+
 .bookmark-folder .bookmark div:hover {
 	background: rgb(30, 30, 30);
 	background: linear-gradient(rgba(30, 30, 30, 0), rgb(30, 30, 30));
-	border-bottom: 2px solid var(--bs-light);
+	border-bottom: 1px solid var(--bs-light);
 }
+
 .d-list-appear {
 	right: 0 !important;
 }
+
 #frame-s-toggle {
 	top: 0;
 	left: 0;
@@ -87,57 +107,55 @@ body {
 	width: 0.5rem;
 	position: fixed;
 }
+
 #frame-s-toggle:hover {
 	background: linear-gradient(to right, var(--bs-light), rgba(0, 0, 0, 0.0));
 }
-#daily-list {
+
+#bookmark-menu {
 	top: 0;
-	right: -30%;
-	width: 21%;
+	right: -50%;
+	width: 50%;
 	height: 100%;
-	opacity: 0.8;
-	overflow: auto;
 	position: fixed;
-	border-left: 1px solid var(--bs-light);
 }
-#daily-list::-webkit-scrollbar {
+
+#bookmark-menu::-webkit-scrollbar {
 	display: none;
 }
-#daily-list .d-link {
-	position: relative;
-	padding: 0.5rem 0.2rem;
-	border-bottom: 2px solid transparent;
+
+#bookmark-menu .d-link {
+	border-bottom: 1px solid transparent;
 }
-#daily-list .d-link:hover {
+
+#bookmark-menu .d-link:hover {
 	background: rgb(30, 30, 30);
 	background: linear-gradient(rgba(30, 30, 30, 0), rgb(30, 30, 30));
-	border-bottom: 2px solid var(--bs-light);
 }
-#daily-list .d-link:hover span {
-	display: inline-block;
+
+#bookmark-menu .d-link a {
+	border-bottom: 1px solid transparent;
 }
-#daily-list a {
+
+#bookmark-menu .d-link:hover a {
+	border-bottom: 1px solid var(--bs-light);
+}
+
+#bookmark-menu a {
 	color: var(--bs-light);
 	text-decoration: none;
 }
-#daily-list .d-link span {
-	position: absolute;
-	right: 0;
-	padding: 0 0.5rem;
-	display: none;
-	cursor: pointer;
-	color: var(--bs-dark);
-	background: var(--bs-light);
-	border-radius: 5px;
-}
-#daily-list .d-link span:hover {
+
+/* #bookmark-menu .d-link button:hover {
 	color: var(--bs-light);
 	background: var(--bs-secondary);
-}
-#daily-list .visited {
+} */
+
+#bookmark-menu .visited {
 	opacity: 0.7;
 }
-#daily-list .visited::after {
+
+#bookmark-menu .visited a::after {
 	content: "- Visited";
 }
 
@@ -154,10 +172,8 @@ body {
 }
 
 #site-frame {
-	width: 100%;
 	position: fixed;
 	left: -100%;
-	transition: all 0.5s ease;
 }
 
 #site-frame.appear {
@@ -170,7 +186,5 @@ body {
 }
 
 #site-frame iframe {
-	width: 100%;
 	height: 80vh;
-	opacity: 0.8;
 }

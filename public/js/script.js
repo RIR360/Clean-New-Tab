@@ -1,27 +1,24 @@
 // elements
-const 
-day_container = document.getElementById("day"),
-date_container = document.getElementById("date"),
-bookmark_secrectButton = document.getElementById("bookmark-s-toggle"),
-frame_secrectButton = document.getElementById("frame-s-toggle"),
-bookmark_button = document.getElementById("bookmark-toggle"),
-bookmark_List = document.getElementById("bookmark-list"),
-daily_list = document.getElementById("daily-list"),
-site_frame = document.getElementById("site-frame"),
-newLink_btn = document.getElementById("new-link"),
-cancelNewLink_btn = document.getElementById("cancel-new-link"),
-newLink_form = document.getElementById("new-link-form"),
-addNewLink_btn = document.getElementById("add-new-link"),
-links_container = document.getElementById("links");
+const day_container = document.getElementById("day");
+const date_container = document.getElementById("date");
+const bookmark_secrectButton = document.getElementById("bookmark-s-toggle");
+const frame_secrectButton = document.getElementById("frame-s-toggle");
+const bookmark_button = document.getElementById("bookmark-toggle");
+const bookmark_List = document.getElementById("bookmark-list");
+const bookmark_menu = document.getElementById("bookmark-menu");
+const site_frame = document.getElementById("site-frame");
+const newLink_btn = document.getElementById("new-link");
+const cancelNewLink_btn = document.getElementById("cancel-new-link");
+const newLink_form = document.getElementById("new-link-form");
+const addNewLink_btn = document.getElementById("add-new-link");
+const links_container = document.getElementById("links");
 
 // globals
-const 
-days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-date = new Date(),
-index = date.getDay(),
-bg_images = [
-    "public/backgrounds/abstract-layers.jpg"
-];
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const date = new Date();
+const index = date.getDay();
+const bg_images = ["public/backgrounds/abstract-layers.jpg"];
+const bookmarks_bar = [];
 
 
 // Bookmark class for the dom
@@ -33,49 +30,80 @@ function render_bookmark(bookmark) {
     title = bookmark.title,
     url = bookmark.url;
 
+    if(bookmark.children) {
+
+        // this bookmark is a folder
+        return render_folder(bookmark);
+
+    } else {
+
+        return `
+            <a target="_blank" class="bookmark smooth" href="${url}">
+                <div class="p-1">
+                    ${title} <span class="small text-muted">- Just Now<span>
+                </div>
+            </a>
+        `;
+
+    }
+}
+
+// render html for other folder
+function render_bookmarks_bar() {
+
+    // return whole folder html
     return `
-        <a target="_blank" class="bookmark" href="${url}">
-            <div class="py-1">
-                ${title} <span class="small text-muted">- Just Now<span>
+    <div class="bookmark-folder mb-2">
+        <div class="bookmark-title smooth fw-bold p-2" data-bs-toggle="collapse" 
+            data-bs-target="#folder360" aria-expanded="false" aria-controls="folder360">
+            Bookmarks Bar<span class="small text-muted"> - Just Now<span>
+        </div>
+        <div id="folder360" class="accordion-collapse collapse smooth">
+            <div class="accordion-body">
+                ${bookmarks_bar.join('')}
             </div>
-        </a>
+        </div>
+    </div>
     `;
+
 }
 
 // renders html for bookmark folder or collection
 function render_folder(folder) {
 
     // folder values
-    const
-    id = folder.id,
-    title = folder.title;
+    let id = folder.id;
+    let title = folder.title;
     
     // render bookmarks code
-    var rendered = [];
-    var open = [];
+    let rendered = [];
 
     if (folder.children) {
 
-        var bookmarks = folder.children;
+        let bookmarks = folder.children;
 
-        for (let bookmark of bookmarks)
+        for (let bookmark of bookmarks) {
 
             rendered.push(render_bookmark(bookmark));
+
+        }
 
     } else {
 
         // folder itself is a bookmark here
-        rendered.push(render_bookmark(folder));
+        bookmarks_bar.push(render_bookmark(folder));
+        // skip rendering
+        return "";
 
     }
 
     // return whole folder html
     return `
-    <div class="bookmark-folder px-2">
-        <h5 class="bookmark-title smooth  py-2" data-bs-toggle="collapse" 
+    <div class="bookmark-folder mb-2">
+        <div class="bookmark-title smooth fw-bold p-2" data-bs-toggle="collapse" 
             data-bs-target="#folder${id}" aria-expanded="false" aria-controls="folder${id}">
-            ${title} <span class="small text-muted">- Just Now<span>
-        </h5>
+            ${title}<span class="small text-muted"> - Just Now<span>
+        </div>
         <div id="folder${id}" class="accordion-collapse collapse smooth">
             <div class="accordion-body">
                 ${rendered.join('')}
@@ -90,20 +118,24 @@ function toggle(elem, cls) {
     return elem.classList.toggle(cls);
 }
 
-// sets a randome background image
+// sets a random background image
 function random_background() {
+
     let randIndex = Math.floor(Math.random() * bg_images.length);
+    document.body.style.backgroundColor = "rgb(30, 30, 30)";
     document.body.style.backgroundImage = `url("${bg_images[randIndex]}")`;
+    document.body.style.height = "100vh";
     document.body.style.backgroundSize = "cover";
-    document.body.style.resize = "both";
+
 }
 
 // renders a single daily link
 function render_link(linkObj) {
     return `
-        <div class="d-link smooth ${linkObj.visited ? "visited" : ""}">
-            <a target="_blank" for="${linkObj.name}" href="${linkObj.url}">${linkObj.name}</a>
-            <span id="${linkObj.name}">X</span>
+        <div class="d-link d-flex mb-2 ${linkObj.visited ? "visited" : ""}">
+            <a class="flex-grow-1 py-2 smooth"
+            target="_blank" for="${linkObj.name}" href="${linkObj.url}">${linkObj.name}</a>
+            <button class="btn btn-outline-light ms-2" id="${linkObj.name}">X</button>
         </div>
     `;
 }
@@ -159,7 +191,7 @@ function load_daily_links() {
     });
 
     // handle daily link button event here
-    const remove_btns = document.querySelectorAll(".d-link span");
+    const remove_btns = document.querySelectorAll(".d-link button");
 
     remove_btns.forEach(btn => {
 
@@ -265,6 +297,8 @@ window.onload = async (e) => {
     
     // load a random background
     random_background();
+    // load iframe
+    site_frame.querySelector("iframe").setAttribute("src", "https://app.daily.dev/popular")
 
     // set day and date
     day_container.innerHTML = days[index];
@@ -276,15 +310,20 @@ window.onload = async (e) => {
         // get the bookmark object list
         const folders = res[0].children[0].children;
 
-        // render
-        for (let folder of folders)
-            bookmark_List.innerHTML += (render_folder(folder));
+        // render all folders
+        for (let folder of folders) {
+
+            bookmark_List.innerHTML += render_folder(folder);
+
+        }
+
+        // render bookmarks bar = links that are not in any folder
+        bookmark_List.innerHTML += render_bookmarks_bar();
 
     });
     
     bookmark_secrectButton.addEventListener("mouseover", e => {
-        toggle(bookmark_List, "list-appear");
-        toggle(daily_list, "d-list-appear");
+        toggle(bookmark_menu, "d-list-appear");
         toggle(site_frame, "pause");
     });
 
@@ -300,5 +339,5 @@ window.onload = async (e) => {
     handle_new_link();
     
     // display the page
-    document.body.style.opacity = 1;
+    document.body.classList.toggle("invisible");
 };
